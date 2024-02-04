@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class QrCodeScannerPage extends StatefulWidget {
+  const QrCodeScannerPage({super.key});
+
   @override
   _QrCodeScannerPageState createState() => _QrCodeScannerPageState();
 }
 
 class _QrCodeScannerPageState extends State<QrCodeScannerPage> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  QRViewController? controller;
+  late QRViewController controller;
   String scannedData = '';
 
   @override
@@ -16,14 +18,21 @@ class _QrCodeScannerPageState extends State<QrCodeScannerPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('QR Code Scanner'),
+        backgroundColor: const Color.fromARGB(255, 41, 115, 138),
       ),
       body: Column(
         children: [
           Expanded(
             flex: 5,
-            child: QRView(
-              key: qrKey,
-              onQRViewCreated: _onQRViewCreated,
+            child: Center(
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width * 0.6,
+                height: MediaQuery.of(context).size.width * 0.6,
+                child: QRView(
+                  key: qrKey,
+                  onQRViewCreated: _onQRViewCreated,
+                ),
+              ),
             ),
           ),
           Expanded(
@@ -31,7 +40,7 @@ class _QrCodeScannerPageState extends State<QrCodeScannerPage> {
             child: Center(
               child: Text(
                 'Scanned Data: $scannedData',
-                style: TextStyle(fontSize: 18),
+                style: const TextStyle(fontSize: 18),
               ),
             ),
           ),
@@ -43,7 +52,7 @@ class _QrCodeScannerPageState extends State<QrCodeScannerPage> {
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
-      _handleScan(scanData.code ?? ''); // Use scanData.code, providing a default value
+      _handleScan(scanData.code ?? '');
     });
   }
 
@@ -52,18 +61,12 @@ class _QrCodeScannerPageState extends State<QrCodeScannerPage> {
       scannedData = data;
     });
 
-    // You can now use the 'scannedData' to navigate or process the information
-    // For example, navigate to the student details page
-    Navigator.pushNamed(
-      context,
-      '../models/student_model',
-      arguments: {'scannedData': data},
-    );
+    // Perform actions with scanned data here
   }
 
   @override
   void dispose() {
-    controller?.dispose();
+    controller.dispose();
     super.dispose();
   }
 }

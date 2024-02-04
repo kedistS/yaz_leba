@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
-import 'package:flutter_application_1/widgets/app_bar.dart';
 import 'package:flutter_application_1/screens/qr_code_generator_screen.dart';
 import 'package:flutter_application_1/models/student_model.dart';
 
