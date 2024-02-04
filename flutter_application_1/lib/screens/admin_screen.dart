@@ -4,7 +4,7 @@ import 'package:flutter_application_1/screens/register_screen.dart';
 import 'package:flutter_application_1/widgets/app_bar.dart';
 
 class AdminScreen extends StatelessWidget {
-  const AdminScreen({Key? key}) : super(key: key);
+  const AdminScreen({super.key});
 
   // Method to navigate to register users screen
   void _navigateToRegisterUsers(BuildContext context) {

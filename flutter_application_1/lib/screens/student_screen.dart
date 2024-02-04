@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/widgets/app_bar.dart';
 
 class StudentScreen extends StatelessWidget {
-  const StudentScreen({Key? key}) : super(key: key);
+  const StudentScreen({super.key});
 
   // Method to handle reporting stolen PC
   void _reportStolenPC(BuildContext context) {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/widgets/app_bar.dart';
 
 class ReportPage extends StatefulWidget {
-  const ReportPage({Key? key}) : super(key: key);
+  const ReportPage({super.key});
 
   @override
   _ReportPageState createState() => _ReportPageState();

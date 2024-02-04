@@ -6,7 +6,7 @@ import 'package:flutter_application_1/screens/forgot_password_screen.dart'; // I
 import 'package:flutter_application_1/widgets/app_bar.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   // Method to handle login logic
   void _login(BuildContext context, String username, String password) {
