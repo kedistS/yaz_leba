@@ -4,7 +4,7 @@ class StudentModel {
   final String id;
   final String firstName;
   final String lastName;
-  final String email;
+  //final String email;
   String? role;
   final String contactNumber;
   final String campus;
@@ -20,7 +20,7 @@ class StudentModel {
     required this.id,
     required this.firstName,
     required this.lastName,
-    required this.email,
+    //required this.email,
     required this.role,
     required this.contactNumber,
     required this.campus,

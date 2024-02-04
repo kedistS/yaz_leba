@@ -12,7 +12,7 @@ class LoginScreen extends StatelessWidget {
   void _login(BuildContext context, String username, String password) {
     // Here you would implement actual login logic
     // For demonstration purposes, let's assume successful login
-    String role = 'guard'; // Replace with actual role fetched from backend
+    String role = 'admin'; // Replace with actual role fetched from backend
 
     switch (role) {
       case 'admin':

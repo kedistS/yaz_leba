@@ -13,18 +13,15 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   File? _profileImage;
-  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _idController = TextEditingController();
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
-  final TextEditingController _contactNumberController =
-      TextEditingController();
+  final TextEditingController _contactNumberController = TextEditingController();
   final TextEditingController _campusController = TextEditingController();
   final TextEditingController _sexController = TextEditingController();
   final TextEditingController _statusController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
 
   final List<String> roles = ['Student', 'Guard'];
   String? selectedRole;
@@ -62,13 +59,18 @@ class _RegisterPageState extends State<RegisterPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Create Account',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+              const SizedBox(height: 16.0),
+          Align(
+            alignment: Alignment.center,
+            child: Text(
+              'Create Account',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
               ),
+            ),
+          ),
+
               const SizedBox(height: 16.0),
               Center(
                 child: GestureDetector(
@@ -94,31 +96,27 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
               const SizedBox(height: 16.0),
-              DropdownButton<String>(
-                value: selectedRole,
-                hint: const Text('Select Role'),
-                items: roles.map((String role) {
-                  return DropdownMenuItem<String>(
-                    value: role,
-                    child: Text(role),
-                  );
-                }).toList(),
-                onChanged: (String? value) {
-                  setState(() {
-                    selectedRole = value;
-                    fieldsVisible = true;
-                  });
-                },
-              ),
-              if (fieldsVisible) ...[
-                const SizedBox(height: 16.0),
-                TextField(
-                  controller: _emailController,
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
-                    border: OutlineInputBorder(),
-                  ),
+              Align(
+                alignment: Alignment.center,
+                child: DropdownButton<String>(
+                  value: selectedRole,
+                  hint: const Text('Select Role'),
+                  items: roles.map((String role) {
+                    return DropdownMenuItem<String>(
+                      value: role,
+                      child: Text(role),
+                    );
+                  }).toList(),
+                  onChanged: (String? value) {
+                    setState(() {
+                      selectedRole = value;
+                      fieldsVisible = true;
+                    });
+                  },
                 ),
+              ),
+
+              if (fieldsVisible) ...[
                 const SizedBox(height: 16.0),
                 TextField(
                   controller: _idController,
@@ -220,68 +218,72 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ],
               ],
-              const SizedBox(height: 16.0),
-              Center(
+            Container(
+              margin: const EdgeInsets.only(top: 60.0),
+              child: Center(
                 child: ElevatedButton(
-                  onPressed: () {
-                    if (selectedRole == 'Student') {
-                      // Create an instance of StudentModel with the entered data
-                      StudentModel student = StudentModel(
-                        id: _idController.text,
-                        firstName: _firstNameController.text,
-                        lastName: _lastNameController.text,
-                        email: _emailController.text,
-                        contactNumber: _contactNumberController.text,
-                        campus: _campusController.text,
-                        sex: _sexController.text,
-                        status: _statusController.text,
-                        laptopBrand: _laptopBrandController.text,
-                        laptopModel: _modelController.text,
-                        laptopSerialNumber: _serialNumberController.text,
-                        role: selectedRole ?? 'student',
-                      );
+                  onPressed: selectedRole == null
+                      ? null
+                      : () {
+                          if (selectedRole == 'Student') {
+                            // Create an instance of StudentModel with the entered data
+                            StudentModel student = StudentModel(
+                              id: _idController.text,
+                              firstName: _firstNameController.text,
+                              lastName: _lastNameController.text,
+                              contactNumber: _contactNumberController.text,
+                              campus: _campusController.text,
+                              sex: _sexController.text,
+                              status: _statusController.text,
+                              laptopBrand: _laptopBrandController.text,
+                              laptopModel: _modelController.text,
+                              laptopSerialNumber: _serialNumberController.text,
+                              role: selectedRole ?? 'student',
+                            );
 
-                      // Navigate to the QR code generator page and pass the student model
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              QrCodeGeneratorPage(student: student),
-                        ),
-                      );
-                    } else {
-                      // Handle the case where the role is not 'Student'
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: const Text('Success'),
-                            content:
-                                const Text('Registration successfully!!!!!!'),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: const Text('OK'),
+                            // Navigate to the QR code generator page and pass the student model
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    QrCodeGeneratorPage(student: student),
                               ),
-                            ],
-                          );
+                            );
+                          } else {
+                            // Handle the case where the role is not 'Student'
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text('Success'),
+                                  content: const Text('Registration successfully!!!!!!'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: const Text('OK'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          }
                         },
-                      );
-                    }
-                  },
                   style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 60.0,vertical: 16.0),
                     backgroundColor: Colors.purple[200],
                     textStyle: const TextStyle(fontSize: 16.0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
+                    // Set the width to fit with the text fields
+                    minimumSize: Size(double.infinity, 0),
                   ),
                   child: const Text('Register'),
                 ),
               ),
+            ),
             ],
           ),
         ),

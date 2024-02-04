@@ -12,7 +12,7 @@ class QrCodeGeneratorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     if (student.role == 'Student') {
       String dataString =
-          "${student.firstName},${student.lastName},${student.email},${student.contactNumber},${student.campus},${student.sex},${student.status},${student.laptopBrand},${student.laptopModel},${student.laptopSerialNumber}";
+          "${student.firstName},${student.lastName},${student.contactNumber},${student.campus},${student.sex},${student.status},${student.laptopBrand},${student.laptopModel},${student.laptopSerialNumber}";
       return Scaffold(
         appBar: const CustomAppBar(title: 'Scan QR Code'),
         body: Center(
