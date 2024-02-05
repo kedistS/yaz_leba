@@ -12,7 +12,7 @@ class LoginScreen extends StatelessWidget {
   void _login(BuildContext context, String username, String password) {
     // Here you would implement actual login logic
     // For demonstration purposes, let's assume successful login
-    String role = 'admin'; // Replace with actual role fetched from backend
+    String role = 'student'; // Replace with actual role fetched from backend
 
     switch (role) {
       case 'admin':
@@ -60,14 +60,21 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Image(
-              image: AssetImage("images/logo.png"),
-              width: 200, // Set the width of the image
-              height: 200, // Set the height of the image
+           const SizedBox(height: 16.0),
+            Center(
+              child: ClipOval(
+                child: Image(
+                  image: AssetImage("images/logo2.jpg"),
+                  width: 210, // Set the width of the circular image
+                  height: 210, // Set the height of the circular image
+                  fit: BoxFit.cover, // Ensure the image covers the circular area
+                ),
+              ),
             ),
+
             const SizedBox(height: 20), // Add some spacing
             TextField(
-              onChanged: (value) => username = value,
+              onChanged: (value) => username = value, 
               decoration: InputDecoration(
                 labelText: 'Username',
                 border: OutlineInputBorder(
